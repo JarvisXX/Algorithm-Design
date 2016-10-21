@@ -1,0 +1,212 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{ctex}
+\usepackage{amsmath,amscd,amsbsy,amssymb,latexsym,url,bm,amsthm}
+\usepackage{epsfig,graphicx,subfigure}
+\usepackage{enumitem,balance,mathtools}
+\usepackage{wrapfig}
+\usepackage{mathrsfs, euscript}
+\usepackage[usenames]{xcolor}
+\usepackage{hyperref}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+%\usepackage[vlined,ruled,commentsnumbered,linesnumbered]{algorithm2e}
+\usepackage[ruled,lined,boxed,linesnumbered]{algorithm2e}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{solution}{Solution}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\newcommand{\postscript}[2]
+ {\setlength{\epsfxsize}{#2\hsize}
+  \centerline{\epsfbox{#1}}}
+
+\renewcommand{\baselinestretch}{1.0}
+
+\setlength{\oddsidemargin}{-0.365in}
+\setlength{\evensidemargin}{-0.365in}
+\setlength{\topmargin}{-0.3in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\textheight}{10.1in}
+\setlength{\textwidth}{7in}
+\makeatletter \renewenvironment{proof}[1][Proof] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother
+\makeatletter
+\renewenvironment{solution}[1][Solution] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother
+\begin{document}
+\noindent
+
+%========================================================================
+\noindent\framebox[\linewidth]{\shortstack[c]{
+\Large{\textbf{CS222 Homework 1}}\vspace{1mm}\\
+Name:ÍõÐÇÒÕ\ StudentID:5140309531}}
+~\\
+
+\begin{enumerate}
+
+\item Given an array of non-negative integers, you are initially positioned at the first index of the array.
+
+Each element in the array represents your maximum jump length at that position.
+
+Determine if you are able to reach the last index.
+
+For example:
+
+A = [2,3,1,1,4], return true.
+
+A = [3,2,1,0,4], return false.
+
+Input:
+
+int A[]: the input array.
+
+int N: length of A.
+
+Output:
+
+return true or false.
+
+~\\
+
+Answer:
+
+\IncMargin{1em}
+\begin{algorithm}
+    \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+
+    \Input{int A[]: the input array; int N: length of A}
+    \Output{return true or false}
+    \BlankLine
+
+    \emph{initialization}\:
+    int cover $\longleftarrow$ 0\;
+    \BlankLine
+    \For{$start\leftarrow 0$ \KwTo $N-1$}{
+        \If{start $>$ cover}{return false\;}
+        \If{A[start]+start $>$ cover}{$maxCover \leftarrow A[start]+start$\;}
+        \If{cover $>=$ N-1}{return true\;}
+    }
+    return false\;
+\end{algorithm}
+
+~\\
+~\\
+
+\newpage
+\item Given an array of non-negative integers, you are initially positioned at the first index of the array.
+
+Each element in the array represents your maximum jump length at that position.
+
+Your goal is to reach the last index in the minimum number of jumps.
+
+For example:
+
+Given array A = [2,3,1,1,4]
+
+The minimum number of jumps to reach the last index is 2. (Jump 1 step from index 0 to 1, then 3 steps to the last index.)
+
+Note:
+
+You can assume that you can always reach the last index.
+
+Input:
+
+int A[]: the input array.
+
+int N: length of A.
+
+Output:
+
+return minimum number of jumps.
+
+~\\
+
+Answer:
+
+\IncMargin{1em}
+\begin{algorithm}
+    \SetKwFunction{max}{max}
+    \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+
+    \Input{int A[]: the input array; int N: length of A}
+    \Output{return minimum number of jumps}
+    \BlankLine
+
+    \emph{initialization}\:
+    int jump $\longleftarrow$ 0\;
+    int last $\longleftarrow$ 0\;
+    int current $\longleftarrow$ 0\;
+    \BlankLine
+    \For{$start\leftarrow 0$ \KwTo $N-1$}{
+        \If{start $>$ last}{
+            $last \leftarrow current$\;
+            $jump \leftarrow jump + 1$\;
+        }
+        $current \leftarrow$ \max{current, i+A[i]}\;
+    }
+    return jump\;
+\end{algorithm}
+
+~\\
+~\\
+
+\newpage
+\item There are N children standing in a line. Each child is assigned a rating value.
+
+You are giving candies to these children subjected to the following requirements:
+
+a. Each child must have at least one candy.
+
+b. Children with a higher rating get more candies than their neighbors.(assume no equal rating neighbors)
+
+What is the minimum candies you must give?
+
+Input:
+
+int A[]: the input array of rating values.
+
+int N: length of A,(number of children).
+
+Output:
+
+return minimum number of candies you must give.
+
+~\\
+
+Answer:
+
+\IncMargin{1em}
+\begin{algorithm}
+    \SetKwInOut{Input}{input}\SetKwInOut{Output}{output}
+
+    \Input{int A[]: the input array of rating values; int N: length of A(number of children)}
+    \Output{return minimum number of candies you must give}
+    \BlankLine
+
+    \emph{initialization}\:
+    int candy[N] $\longleftarrow$ 0\;
+    int total $\longleftarrow$ 0\;
+    \BlankLine
+    $candy[0] \leftarrow 1$\;
+    \For{$i\leftarrow 1$ \KwTo $N-1$}{
+        \lIf{A[i] $>$ A[i-1]}{$candy[i] \leftarrow candy[i-1]+1$\;}
+        \lElse{$candy[i] \leftarrow 1$\;}
+    }
+    $total \leftarrow candy[N-1]$\;
+    \For{$i\leftarrow N-2$ \KwTo 0}{
+        \If{A[i] $>$ A[i+1] \&\& candy[i+1]+1 $>$ candy[i]}{$candy[i] \leftarrow candy[i+1]+1$\;}
+        $total \leftarrow total + candy[i]$\;
+    }
+    return total\;
+\end{algorithm}
+
+~\\
+~\\
+
+\end{enumerate}
+%========================================================================
+\end{document}

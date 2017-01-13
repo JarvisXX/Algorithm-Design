@@ -1,0 +1,170 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{ctex}
+\usepackage{amsmath,amscd,amsbsy,amssymb,latexsym,url,bm,amsthm}
+\usepackage{epsfig,graphicx,subfigure}
+\usepackage{enumitem,balance,mathtools}
+\usepackage{wrapfig}
+\usepackage{mathrsfs, euscript}
+\usepackage[usenames]{xcolor}
+\usepackage{hyperref}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+%\usepackage[vlined,ruled,commentsnumbered,linesnumbered]{algorithm2e}
+\usepackage[ruled,lined,boxed,linesnumbered]{algorithm2e}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{solution}{Solution}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\newcommand{\postscript}[2]
+ {\setlength{\epsfxsize}{#2\hsize}
+  \centerline{\epsfbox{#1}}}
+
+\renewcommand{\baselinestretch}{1.0}
+
+\setlength{\oddsidemargin}{-0.365in}
+\setlength{\evensidemargin}{-0.365in}
+\setlength{\topmargin}{-0.3in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\textheight}{10.1in}
+\setlength{\textwidth}{7in}
+\makeatletter \renewenvironment{proof}[1][Proof] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother
+\makeatletter
+\renewenvironment{solution}[1][Solution] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother
+\begin{document}
+\noindent
+
+%========================================================================
+\noindent\framebox[\linewidth]{\shortstack[c]{
+\Large{\textbf{CS222 Homework 3}}\vspace{1mm}\\
+Exercises for Algorithm Design and Analysis by Li Jiang, 2016 Autumn Semester}}
+~\\
+\begin{enumerate}
+
+\item You are given coins of different denominations and a total amount of money amount.
+
+Write a function to compute the fewest number of coins that you need to make up that amount.
+
+If that amount of money cannot be made up by any combination of the coins, return -1.
+
+Example 1:
+
+coins = [1, 2, 5], amount = 11
+
+return 3 (11 = 5 + 5 + 1)
+
+Example 2:
+
+coins = [2], amount = 3
+
+return -1.
+
+Input:
+
+int coins[];
+
+int n: length of coins[];
+
+int amount;
+
+Output:
+
+int num;
+
+%Your answer should be written here.
+
+~\\
+~\\
+~\\
+~\\
+
+\item Given a string s, partition s such that every substring of the partition is a palindrome.
+
+Return the minimum cuts needed for a palindrome partitioning of s.
+
+For example, given s = "aab",
+
+Return 1 since the palindrome partitioning ["aa","b"] could be produced using 1 cut.
+
+Input:
+
+string s;
+
+Output:
+
+int cuts;
+
+%Your answer should be written here.
+
+~\\
+~\\
+~\\
+~\\
+
+\item Given two arrays of length m and n with digits 0-9 representing two numbers.
+
+Create the maximum number of length $ k \leq m + n $ from digits of the two.
+
+The relative order of the digits from the same array must be preserved.
+
+Return an array of the k digits.
+
+You should try to optimize your time and space complexity.
+
+Example 1:
+
+nums1 = [3, 4, 6, 5]
+
+nums2 = [9, 1, 2, 5, 8, 3]
+
+k = 5
+
+return [9, 8, 6, 5, 3]
+
+Example 2:
+
+nums1 = [6, 7]
+
+nums2 = [6, 0, 4]
+
+k = 5
+
+return [6, 7, 6, 0, 4]
+
+Example 3:
+
+nums1 = [3, 9]
+
+nums2 = [8, 9]
+
+k = 3
+
+return [9, 8, 9]
+
+Input:
+
+int nums1[], int m;
+
+int nums2[], int n;
+
+int k;
+
+Output:
+
+int nums[];
+
+%Your answer should be written here.
+
+~\\
+~\\
+
+
+\end{enumerate}
+%========================================================================
+\end{document}

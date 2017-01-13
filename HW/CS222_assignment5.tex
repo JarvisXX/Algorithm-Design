@@ -1,0 +1,152 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{ctex}
+\usepackage{amsmath,amscd,amsbsy,amssymb,latexsym,url,bm,amsthm}
+\usepackage{epsfig,graphicx,subfigure}
+\usepackage{enumitem,balance,mathtools}
+\usepackage{wrapfig}
+\usepackage{mathrsfs, euscript}
+\usepackage[usenames]{xcolor}
+\usepackage{hyperref}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+%\usepackage[vlined,ruled,commentsnumbered,linesnumbered]{algorithm2e}
+\usepackage[ruled,lined,boxed,linesnumbered]{algorithm2e}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{solution}{Solution}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\newcommand{\postscript}[2]
+ {\setlength{\epsfxsize}{#2\hsize}
+  \centerline{\epsfbox{#1}}}
+
+\renewcommand{\baselinestretch}{1.0}
+
+\setlength{\oddsidemargin}{-0.365in}
+\setlength{\evensidemargin}{-0.365in}
+\setlength{\topmargin}{-0.3in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\textheight}{10.1in}
+\setlength{\textwidth}{7in}
+\makeatletter \renewenvironment{proof}[1][Proof] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother
+\makeatletter
+\renewenvironment{solution}[1][Solution] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother
+\begin{document}
+\noindent
+
+%========================================================================
+\noindent\framebox[\linewidth]{\shortstack[c]{
+\Large{\textbf{CS222 Homework 5}}\vspace{1mm}\\
+Exercises for Algorithm Design and Analysis by Li Jiang, 2016 Autumn Semester}}
+~\\
+\begin{enumerate}
+
+\item Given a positive integer n and you can do operations as follow:
+
+1. If n is even, replace n with n/2.
+
+2. If n is odd, you can replace n with either n + 1 or n - 1.
+
+What is the minimum number of replacements needed for n to become 1?
+
+Example 1:
+
+Input: 8
+
+Output: 3
+
+Explanation: $8 => 4 => 2 => 1$
+
+Example 2:
+
+Input:7
+
+Output:4
+
+Explanation: $7 => 8 => 4 => 2 => 1$ or $7 => 6 => 3 => 2 => 1$
+
+Input: int n;
+
+Output: int minNum;
+
+%Your answer should be written here.
+
+~\\
+~\\
+~\\
+~\\
+
+\item
+Implement a basic calculator to evaluate a simple expression string.
+
+The expression string may contain open ( and closing parentheses ), the plus + or minus sign -, non-negative integers and empty spaces.
+
+You may assume that the given expression is always valid.
+
+Some examples:
+
+"1 + 1" = 2
+
+" 2-1 + 2 " = 3
+
+"(1+(4+5+2)-3)+(6+8)" = 23
+
+Note: Do not use the eval built-in library function.
+
+Input: string str;
+
+Output: int result;
+
+%Your answer should be written here.
+
+~\\
+~\\
+\item
+In the computer world, use restricted resource you have to generate maximum benefit is what we always want to pursue.
+
+For now, suppose you are a dominator of m 0s and n 1s respectively. On the other hand, there is an array with strings consisting of only 0s and 1s.
+
+Now your task is to find the maximum number of strings that you can form with given m 0s and n 1s. Each 0 and 1 can be used at most once.
+
+Note:
+
+1. The given numbers of 0s and 1s will both not exceed 100.
+
+2. The size of given string array won't exceed 600.
+
+Example 1:
+
+Input: Array = {"10", "0001", "111001", "1", "0"}, m = 5, n = 3.
+
+Output: 4.
+
+Explanation: This are totally 4 strings can be formed by the using of 5 0s and 3 1s, which are ¡°10,¡±0001¡±,¡±1¡±,¡±0¡±.
+
+Example 2:
+
+Input: Array = {"10", "0", "1"}, m = 1, n = 1.
+
+Output: 2.
+
+Explanation: You could form "10", but then you'd have nothing left. Better form "0" and "1".
+
+Input: string array[]; int N; int m; int n; // N: number of strings in array.
+
+Output: int findMaxForm;
+
+%Your answer should be written here.
+
+
+~\\
+~\\
+~\\
+
+\end{enumerate}
+%========================================================================
+\end{document}

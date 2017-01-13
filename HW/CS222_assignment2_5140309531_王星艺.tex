@@ -1,0 +1,212 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{ctex}
+\usepackage{amsmath,amscd,amsbsy,amssymb,latexsym,url,bm,amsthm}
+\usepackage{epsfig,graphicx,subfigure}
+\usepackage{enumitem,balance,mathtools}
+\usepackage{wrapfig}
+\usepackage{mathrsfs, euscript}
+\usepackage[usenames]{xcolor}
+\usepackage{hyperref}
+%\usepackage{algorithm}
+%\usepackage{algorithmic}
+%\usepackage[vlined,ruled,commentsnumbered,linesnumbered]{algorithm2e}
+\usepackage[ruled,lined,boxed,linesnumbered]{algorithm2e}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{exercise}{Exercise}[section]
+\newtheorem*{solution}{Solution}
+
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+
+\newcommand{\postscript}[2]
+ {\setlength{\epsfxsize}{#2\hsize}
+  \centerline{\epsfbox{#1}}}
+
+\renewcommand{\baselinestretch}{1.0}
+
+\setlength{\oddsidemargin}{-0.365in}
+\setlength{\evensidemargin}{-0.365in}
+\setlength{\topmargin}{-0.3in}
+\setlength{\headheight}{0in}
+\setlength{\headsep}{0in}
+\setlength{\textheight}{10.1in}
+\setlength{\textwidth}{7in}
+\makeatletter \renewenvironment{proof}[1][Proof] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother
+\makeatletter
+\renewenvironment{solution}[1][Solution] {\par\pushQED{\qed}\normalfont\topsep6\p@\@plus6\p@\relax\trivlist\item[\hskip\labelsep\bfseries#1\@addpunct{.}]\ignorespaces}{\popQED\endtrivlist\@endpefalse} \makeatother
+\begin{document}
+\noindent
+
+%========================================================================
+\noindent\framebox[\linewidth]{\shortstack[c]{
+\Large{\textbf{CS222 Homework 2}}\vspace{1mm}\\
+Name:ÍõÐÇÒÕ\ StudentID:5140309531}}
+~\\
+
+\begin{enumerate}
+
+\item There are two sorted arrays nums1 and nums2 of size m and n respectively.
+
+Find the median of the two sorted arrays. The overall run time complexity should be O(log (m+n)).
+
+Example 1:
+
+nums1 = [1, 3]
+
+nums2 = [2]
+
+The median is 2.0
+
+Example 2:
+
+nums1 = [1, 2]
+
+nums2 = [3, 4]
+
+The median is (2 + 3)/2 = 2.5
+
+Input:
+
+int nums1[]; int m;
+
+int nums2[]; int n;
+
+Output:
+
+double median.
+
+~\\
+
+\IncMargin{1em}
+\begin{function}
+    \caption{FindKth(int *nums1, int *nums2, int m, int n, int k)}
+    \SetKwFunction{min}{min}
+
+    \If{m $>$ n}{return \FindKth{nums2, nums1, n, m, k}\;}
+    \If{m == 0}{return nums2[k - 1]\;}
+    \If{k == 1}{return \min{nums1[0], nums2[0]}\;}
+    int p $\longleftarrow$ \min{m, k / 2}\;
+    int q $\longleftarrow$ k - p\;
+    \uIf{nums1[p - 1] $<$ nums2[q - 1]}{return \FindKth{nums1 + p, nums2, m - p, n, k - p}\;}
+    \uElseIf{nums1[p - 1] $>$ nums2[q - 1]}{return \FindKth{nums1, nums2 + q, m, n - q, k - q}\;}
+    \Else{return nums1[p - 1]\;}
+\end{function}
+
+\begin{algorithm}
+    \caption{Solution 1}
+
+    \KwIn{int nums1[]; int m; int nums2[]; int n;}
+    \KwOut{double median.}
+    \BlankLine
+
+    int k $\longleftarrow$ (m + n) / 2\;
+    \uIf{(m + n) \% 2 == 0}{
+        return (\FindKth{nums1, nums2, m, n, k} + \FindKth{nums1, nums2, m, n, k + 1}) / 2\;
+    }
+    \Else{return \FindKth{nums1, nums2, m, n, k+1}\;}
+\end{algorithm}
+
+~\\
+~\\
+
+
+\item Find the contiguous subarray within an array (containing at least one number) which has the largest sum.
+
+For example, given the array [-2,1,-3,4,-1,2,1,-5,4], the contiguous subarray [4,-1,2,1] has the largest sum = 6.
+
+Input:
+
+int A[]: the input array.
+
+int N: length of A.
+
+Output:
+
+return the largest sum.
+
+~\\
+
+\begin{algorithm}
+    \caption{Solution 2}
+    \SetKwFunction{max}{max}
+
+    \KwIn{int A[]: the input array; int N: length of A}
+    \KwOut{return the largest sum}
+    \BlankLine
+    
+    int tmp $\longleftarrow$ A[0]\;
+    int result $\longleftarrow$ tmp\;
+    \For{$i\leftarrow 1$ \KwTo $N-1$}{
+        \uIf{tmp $>$ 0}{tmp $\leftarrow$ tmp + A[i]\;}
+        \Else{tmp $\leftarrow$ A[i]\;}
+        result $\leftarrow$ \max{result, tmp}\;
+    }
+    return result\;
+\end{algorithm}
+
+~\\
+~\\
+
+
+\item Given a non-empty array containing only positive integers, find if the array can be partitioned into two subsets such that the sum of elements in both subsets is equal.
+
+Note:
+
+Each of the array element will not exceed 100.
+
+The array size will not exceed 200.
+
+Example 1:
+
+Input: [1, 5, 11, 5]
+
+Output: true
+
+Explanation: The array can be partitioned as [1, 5, 5] and [11].
+
+Example 2:
+
+Input: [1, 2, 3, 5]
+
+Output: false
+
+Explanation: The array cannot be partitioned into equal sum subsets.
+
+Input:
+
+int A[]: the input array.
+
+int N: length of A.
+
+Output:
+
+return true or false.
+
+\begin{algorithm}
+    \caption{Solution 3}
+
+    \KwIn{int A[]: the input array; int N: length of A}
+    \KwOut{return true or false}
+    \BlankLine
+    
+    \If{the sum of A is odd}{return false\;}
+    int dp[sum / 2 + 1] $\longleftarrow$ 0\;
+    dp[0] $\leftarrow$ 1\;
+    \For{$i\leftarrow 0$ \KwTo $N-1$}{
+        \For{$j\leftarrow sum / 2$ \KwTo $A[i]$}{
+            dp[j] $\leftarrow$ dp[j] $||$ dp[j-A[i]]\;
+        }
+    }
+    \uIf{dp[sum / 2] == 1}{return true\;}
+    \Else{return false\;}
+\end{algorithm}
+
+~\\
+~\\
+
+\end{enumerate}
+%========================================================================
+\end{document}
